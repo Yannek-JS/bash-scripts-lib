@@ -51,3 +51,11 @@ function check_if_root() {  # checks if script is being run by a user having roo
     fi
 }
 
+
+function press_any_key() {
+    echo -e -n ${ORANGE}'\n Press any key to continue...'${SC}
+    read -n1 -s anyKey
+}
+
+
+
