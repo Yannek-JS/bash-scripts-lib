@@ -19,9 +19,16 @@ YELLOW='\033[1;33m'
 SC='\033[0m' # Standard colour
 
 
-function draw_line() {  # it draws a line made of 80 hyphens
+function draw_line() {  
+    # It draws a line made of 80 hyphens in colour specified as a parameter.
+    # Parameters:
+    #   $1 - a colour to set for drawing a line
+    #   $2 - a colour to set after the line has been drawn
+    if [ $# -eq 2 ]; then stopColour=$2; else stopColour=${SC}; fi
+    if [ $# -ge 1 ]; then startColour=$1; else startColour=${SC}; fi
+    echo -e $startColour
     for num in $(seq 0 79); do echo -n '-'; done
-    echo
+    echo -e $stopColour
 }
 
 
