@@ -65,4 +65,19 @@ function press_any_key() {
 }
 
 
-
+function complete_message() {
+    # It completes a message (that begins like 'Starting very important process :P ...') due to 
+    # an exit code passed as $1 parameter. 
+    # Parameters:
+    #   $1 - an exit code
+    #   $2 - a message if exit code == 0
+    #   $3 - a message if exit code != 0
+    #   $4 - if 'EXIT', the script is quitted
+    if [ $1 -ne 0 ]
+    then
+        echo -e -n "$3"
+        if [ "$4" == 'EXIT' ]; then quit_now; fi
+    else
+        echo -e -n "$2"
+    fi
+}
