@@ -81,3 +81,16 @@ function complete_message() {
         echo -e -n "$2"
     fi
 }
+
+
+lift_privileges() {
+    # It checks if a user that runs this script has got their privileges lifted. If not, it tries to lift it.
+    # Parameters:
+    #   $1 - a message for the user
+    if [ $(id --user) -ne 0 ]
+    then
+        echo -e "$1"
+        sudo id --user > /dev/null
+    fi
+    if [ $? -ne 0 ]; then quit_now; fi
+}
